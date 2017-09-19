@@ -8,8 +8,21 @@ app.use(function(req, res, next){
 	next();
 })
 
+app.use('/special', function(req, res, next){
+	console.log('Middleware on special routes: ', req.method + '/' + res.statusCode);
+	next();
+})
+
 app.get('/', function(req, res){
 	res.send('Hello there');
+})
+
+app.get('/special', function(req, res){
+	res.send('This area is special');
+})
+
+app.get('/special/super', function(req, res){
+	res.send('This area is SUPER special');
 })
 
 app.listen(PORT, function(){
